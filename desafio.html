@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio pt 1 e 2 - FORD ENTER</title>
+</head>
+<body>
+    <script>
+
+        alert("Ao digitar valores, SEMPRE utilize o ponto (.) para separar as casas decimais, e não a virgula (,) !");
+
+        var distancia = parseFloat(prompt("Qual a distância percorrida em km da sua casa até o trabalho?"));
+
+        //parseFloat pode ser usado para transformar string em float, podendo-se usar casas decimais ex: 2.5 km para distância ou consumo médio do combustível 12.7 litros por km
+
+        var combustivel = parseFloat(prompt("Qual o consumo de combustível médio do seu carro em litros por km?"));
+
+        var consumo = distancia / combustivel;
+
+        document.write("O consumo médio do seu carro foi de " + consumo.toFixed(2) + " litros por km. <br>");
+
+        var postos = parseInt(prompt("Em quantos postos de combustível vocé pesquisou o valor de combustível para o seu carro?")); 
+        
+        //valor inteiro por isso parseInt, não tem como pesquisar em 3.5 postos
+
+        var menorpreco = Infinity; 
+
+        //valor infinito para comparação, qualquer numero digitado pelo usuário será menor do que ele.
+
+        var salvarprecos = [];
+
+        for (var i = 1; i <= postos; i++) {
+
+            var preco = parseFloat(prompt("Qual o valor do combustível no posto " + i + "?"));
+
+                if (isNaN(preco)) {
+                    alert("Valor inválido. Tente novamente.");
+                    i--;
+                    continue;
+                }
+
+        salvarprecos.push(preco);
+
+        if (preco < menorpreco) {
+            menorpreco = preco;
+        }
+
+        }
+
+        document.write("O menor preço encontrado foi de R$ " + menorpreco.toFixed(2) + ". <br>");
+
+        // primeiro somar as variaveis da array e depois dividir por postos
+
+        var soma = 0;
+
+            for (var i = 0; i < salvarprecos.length; i++) {
+            soma += salvarprecos[i];
+        }
+
+        var mediavalores = soma / salvarprecos.length;
+
+        var gastodiario = 2 * (consumo * menorpreco) // ida e volta para casa
+
+        document.write("O valor medio de combustível gastado por dia foi de R$ " + mediavalores.toFixed(2) + ". <br>");
+
+        document.write("Você gastaria um total R$ " + gastodiario.toFixed(2) + " por dia. (Ida e volta)");
+
+
+    </script>
+</body>
+</html>
