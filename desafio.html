@@ -38,8 +38,8 @@
 
                 if (isNaN(preco)) {
                     alert("Valor inválido. Tente novamente.");
-                    i--;
-                    continue;
+                    i--; // decrementa o índice para refazer a pergunta ao mesmo posto
+                    continue; // pula para a próxima iteração
                 }
 
                 if (preco <= 0) {
@@ -85,3 +85,5 @@
     </script>
 </body>
 </html>
+
+
