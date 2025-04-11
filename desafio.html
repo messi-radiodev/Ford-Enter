@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafio pt 1 e 2 - FORD ENTER</title>
+    <title>Desafio parte 1 - FORD ENTER</title>
 </head>
 <body>
     <script>
 
-        alert("Ao digitar valores, SEMPRE utilize o ponto (.) para separar as casas decimais, e não a virgula (,) !");
+        alert("Você deve utilizar apenas números e pontuação para responder as perguntas, nenhuma letra ou simbolo deve ser utilizado e não deixe nenhum espaço vazio/sem resposta. \n\nUtilize o ponto (.) para separar as casas decimais, e não a virgula (,) !");
 
         var distancia = parseFloat(prompt("Qual a distância percorrida em km da sua casa até o trabalho?"));
 
         //parseFloat pode ser usado para transformar string em float, podendo-se usar casas decimais ex: 2.5 km para distância ou consumo médio do combustível 12.7 litros por km
 
-        var combustivel = parseFloat(prompt("Qual o consumo de combustível médio do seu carro em litros por km?"));
+        var combustivel = parseFloat(prompt("Qual o consumo de combustível médio do seu carro em km por litro?"));
 
         var consumo = distancia / combustivel;
 
         document.write("O consumo médio do seu carro foi de " + consumo.toFixed(2) + " litros por km. <br>");
 
+        // toFixed(2) serve para limitar ou ampliar o numero de casas decimais após o ponto, neste caso será 2.
+
         var postos = parseInt(prompt("Em quantos postos de combustível vocé pesquisou o valor de combustível para o seu carro?")); 
         
-        //valor inteiro por isso parseInt, não tem como pesquisar em 3.5 postos
+        //valor inteiro por isso parseInt, não tem como pesquisar em 3.5 postos e evitar que apareçam as casas decimais.
 
         var menorpreco = Infinity; 
 
@@ -40,23 +42,36 @@
                     continue;
                 }
 
+                if (preco <= 0) {
+                    alert("Valor inválido. Tente novamente.");
+                    i--;
+                    continue;
+                }
+
+                // condições para evitar erro de NaN (Not a Number) e valores negativos, que podem ser digitados pelo usuário e como parte do desafio parte 2.
+
+        
         salvarprecos.push(preco);
+
+        // literalmente "empurrar" o preco para dentro da array
 
         if (preco < menorpreco) {
             menorpreco = preco;
         }
 
+        // organizar o menor preço, se surgir outro valor menor do que o que era antes, ele irá sobrescrever.
+
         }
 
         document.write("O menor preço encontrado foi de R$ " + menorpreco.toFixed(2) + ". <br>");
-
-        // primeiro somar as variaveis da array e depois dividir por postos
 
         var soma = 0;
 
             for (var i = 0; i < salvarprecos.length; i++) {
             soma += salvarprecos[i];
         }
+
+        // primeiro somar os valores dentro da array e depois dividir por postos
 
         var mediavalores = soma / salvarprecos.length;
 
